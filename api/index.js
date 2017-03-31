@@ -12,49 +12,18 @@ MongoClient.connect( config.mongodbUri, ( err,db ) => {
 
 const router = express.Router()
 
-router.get( '/contests', ( req,res ) => {
-  let contests = {}
-  mdb.collection( 'contests' )
+router.get( '/people', ( req, res ) => {
+  mdb.collection( 'people' )
     .find({})
-    .project({
-      id: 1,
-      categoryName: 1,
-      contestName: 1
-    })
-    .each( (  err,contest ) => {
-      assert.equal( null,err )
-
-      if ( !contest ) {
-        res.send( { contests } )
-        return
-      }
-
-      contests[ contest.id ] = contest
-    })
-})
-
-router.get( '/contests/:contestId', ( req,res ) => {
-  mdb.collection( 'contests' )
-    .findOne( { id: Number(req.params.contestId) } )
-    .then( contest => res.send( contest ) )
+    .then( people => res.send( people ) )
     .catch( console.err )
 })
 
-router.get( '/names/:nameIds', ( req,res ) => {
-  const nameIds = req.params.nameIds.split(',').map(Number)
-  let names = {}
-  mdb.collection( 'names' )
-    .find( { id: {$in : nameIds } } )
-    .each( (  err,name ) => {
-      assert.equal( null,err )
-
-      if ( !name ) {
-        res.send( { names } )
-        return
-      }
-
-      names[ name.id ] = name
-    })
+router.get( '/people/:peopleId', ( req, res ) => {
+  mdb.collection( 'people' )
+    .findOne( { id: Number(req.params.peopleId) } )
+    .then( person => res.send( person ) )
+    .catch( console.err )
 })
 
 export default router

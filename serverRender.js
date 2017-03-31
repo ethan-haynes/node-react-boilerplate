@@ -4,19 +4,19 @@ import App from './src/comps/App'
 import axios from 'axios'
 import config from './config'
 
-const getApiUrl = contestId => {
-  if ( contestId ) {
-    return `${config.serverUrl}/api/contests/${contestId}`
+const getApiUrl = personId => {
+  if ( personId ) {
+    return `${config.serverUrl}/api/people/${personId}`
   }
 
-  return `${config.serverUrl}/api/contests`
+  return `${config.serverUrl}/api/people`
 }
 
-const getInitialData = ( contestId, apiData )  => {
-  if ( contestId ) {
+const getInitialData = ( personId, apiData )  => {
+  if ( personId ) {
     return {
-      currentContestId: apiData.id,
-      contests: {
+      currentPersonId: apiData.id,
+      people: {
         [apiData.id]: apiData
       }
     }
@@ -26,10 +26,10 @@ const getInitialData = ( contestId, apiData )  => {
   }
 }
 
-const serverRender = ( contestId ) =>
-  axios.get( getApiUrl( contestId ) )
+const serverRender = ( personId ) =>
+  axios.get( getApiUrl( personId ) )
     .then( res => {
-      const initialData = getInitialData( contestId, res.data )
+      const initialData = getInitialData( personId, res.data )
       return {
         initialMarkup: ReactDOMServer.renderToString(
           <App initialData={ initialData }/>
