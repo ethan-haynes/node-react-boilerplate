@@ -14,16 +14,18 @@ const router = express.Router()
 
 router.get( '/people', ( req, res ) => {
   mdb.collection( 'people' )
-    .find({})
-    .then( people => res.send( people ) )
-    .catch( console.err )
+    .find().toArray( (err, people) => {
+        assert.equal(null, err)
+        res.send( people )
+    })
 })
 
 router.get( '/people/:peopleId', ( req, res ) => {
   mdb.collection( 'people' )
-    .findOne( { id: Number(req.params.peopleId) } )
-    .then( person => res.send( person ) )
-    .catch( console.err )
+    .findOne( { id: Number(req.params.peopleId) }, (err, person) => {
+      assert.equal(null, err)
+      res.send( person )
+    })
 })
 
 export default router

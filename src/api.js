@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-export const fetchContest = contestId => {
-  return axios.get( `/api/contests/${contestId}` )
+export const fetchPerson = personId => {
+  return axios.get( `http://localhost:80/api/people/${personId}` )
               .then( res => res.data )
 }
 
-export const fetchContestList = ( ) => {
-  return axios.get( '/api/contests' )
+export const fetchPeopleList = ( ) => {
+  return axios.get( 'http://localhost:80/api/people/' )
               .then( res => res.data.contests )
 }
