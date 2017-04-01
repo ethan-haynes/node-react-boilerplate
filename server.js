@@ -17,7 +17,6 @@ server.use( sassMiddleware({
 
 server.set( 'view engine', 'ejs' )
 
-
 server.get( [ '/','/people/:peopleId' ], ( req, res ) => {
   serverRender( req.params.peopleId )
     .then( ({ initialMarkup, initialData }) => {
@@ -25,7 +24,6 @@ server.get( [ '/','/people/:peopleId' ], ( req, res ) => {
         initialMarkup,
         initialData
       })
-      .catch( console.error )
     })
     .catch( console.error )
 })

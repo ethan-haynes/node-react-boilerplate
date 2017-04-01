@@ -7,5 +7,5 @@ export const fetchPerson = personId => {
 
 export const fetchPeopleList = ( ) => {
   return axios.get( 'http://localhost:80/api/people/' )
-              .then( res => res.data.contests )
+              .then( res => res.data )
 }

@@ -22,7 +22,7 @@ const getInitialData = ( personId, apiData )  => {
     }
   }
   return {
-    people: apiData.people
+    people: apiData
   }
 }
 
