@@ -6,7 +6,6 @@ import config from '../config'
 let mdb
 MongoClient.connect( config.mongodbUri, ( err,db ) => {
   assert.equal( null,err )
-
   mdb = db
 })
 
