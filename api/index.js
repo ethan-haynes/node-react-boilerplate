@@ -2,7 +2,8 @@ import express from 'express'
 import { MongoClient } from 'mongodb'
 import assert from 'assert'
 import config from '../config'
-
+console.log("config", process.env)
+console.log("config", config.mongodbUri)
 let mdb
 MongoClient.connect( config.mongodbUri, ( err,db ) => {
   assert.equal( null,err )
