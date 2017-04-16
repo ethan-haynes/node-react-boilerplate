@@ -4,8 +4,8 @@
 
  export default {
    mongodbUri: env.MONGODB_URI,
-   port: env.PORT || 8080,
-   host: env.HOST || "localhost",
+   port: env.PORT || 3000,
+   host: env.HOST || '0.0.0.0',
    get serverUrl( ) {
      return `http://${this.host}:${this.port}`
    }

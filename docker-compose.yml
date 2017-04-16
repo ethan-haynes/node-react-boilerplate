@@ -1,23 +1,29 @@
+---
 version: '2'
 services:
-
-  web:
-    build:
-      context: '.'
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
     ports:
-      - "80:8080"
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks:
+      - all
+  web:
+    build: .
+    container_name: web
+    environment:
+      VIRTUAL_HOST: localhost
     depends_on:
       - mongo
     networks:
       - all
     links:
       - mongo
-    environment:
-      MONGODB_URI: ${MONGODB_URI}
 
   mongo:
     image: mongo
-    command: mongod --smallfiles
     networks:
       - all
 

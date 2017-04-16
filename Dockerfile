@@ -1,4 +1,4 @@
-FROM node:boron
+FROM node:latest
 
 # Create app directory
 RUN mkdir -p /usr/src/app
@@ -11,6 +11,6 @@ RUN cd /usr/src/app && npm install
 WORKDIR /usr/src/app
 COPY . /usr/src/app
 
-EXPOSE 8080
-ENV MONGODB_URI=mongodb://mongo:27017/test
-RUN npm run build
+EXPOSE 3000
+ENV MONGODB_URI=mongodb://mongo/test
+CMD ["npm", "start", ""]
