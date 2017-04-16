@@ -5,9 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --config webpack.config.js && node loadTestData && nodemon --exec babel-node server.js --ignore public/",
+    "start": "webpack --config webpack.config.js && npm run sass && node loadTestData && nodemon --exec babel-node server.js --ignore public/",
     "dev": "webpack -wd",
-    "build": "webpack --config webpack.config.js && npm start"
+    "sass": "node_modules/.bin/node-sass sass/ -o public/"
   },
   "author": "Ethan Haynes",
   "license": "MIT",
@@ -30,7 +30,9 @@
     "babel-preset-stage-2": "^6.18.0",
     "eslint": "^3.12.2",
     "eslint-plugin-react": "^6.8.0",
+    "node-sass": "^4.5.2",
     "nodemon": "^1.11.0",
-    "webpack": "^1.14.0"
+    "sass-loader": "^6.0.3",
+    "webpack": "^1.15.0"
   }
 }
