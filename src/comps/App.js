@@ -13,7 +13,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    if (!this.state.currentPersonId) {
+    if (!!this.state.currentPersonId) {
       api.fetchPeopleList().then(({currentPersonId, people}) => {
         this.setState({
           currentPersonId,
@@ -29,7 +29,7 @@ class App extends Component {
       <div className="App">
         { !!this.state.people
           ? this.getInitialData(initialData)
-          : "Loading..." }
+          : "bloading..." }
       </div>
     )
   }
